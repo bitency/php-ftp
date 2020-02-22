@@ -372,7 +372,7 @@ class Ftp
             while($file = $d->read())
             {
                 # To prevent an infinite loop 
-                if ($file != "." && $file != "..")
+                if ($file != "." && $file != ".." && strpos(substr($file, -2), '/.') === false && strpos(substr($file, -3), '/..') === false)
                 {
                     $to_upload++;
                     if (is_dir($local_dir . DIRECTORY_SEPARATOR . $file))
@@ -531,7 +531,7 @@ class Ftp
                     foreach ($files as $file)
                     {
                         # To prevent an infinite loop 
-                        if ($file != "." && $file != "..")
+                        if ($file != "." && $file != ".." && strpos(substr($file, -2), '/.') === false && strpos(substr($file, -3), '/..') === false)
                         {
                             $to_download++;
                             # do the following if it is a directory 
